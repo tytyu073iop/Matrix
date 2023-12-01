@@ -17,21 +17,21 @@ public:
 	matrix& operator=(const matrix& right);
 	matrix& operator+=(const matrix& right);
 	matrix& operator-=(const matrix& right);
-	matrix& operator*=(const matrix& right);
-	matrix& operator*=(const int& right);
+	matrix& operator*=(const double& right);
 	matrix operator+(const matrix& right);
 	matrix operator-(const matrix& right);
 	matrix operator*(const matrix& right);
-	matrix operator*(const int& right);
-	friend matrix operator*(const int& left, const matrix& right);
-	matrix& operator/=(const int& right);
-	matrix operator/(const int& right);
-	int operator<=>(const matrix& right);
+	matrix operator*(const double& right);
+	friend matrix operator*(const double& left, const matrix& right);
+	matrix& operator/=(const double& right);
+	matrix operator/(const double& right);
+	bool operator==(const matrix& right);
 	friend std::istream& operator>>(std::istream& is, const matrix& right);
 	friend std::ostream& operator<<(std::ostream& os, const matrix& right);
 	//errors
 	enum class Errors
 	{
-		Matrixs_size_unequal
+		Matrixs_size_unequal,
+		Matrixs_unmultiple
 	};
 };

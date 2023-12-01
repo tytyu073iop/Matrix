@@ -56,7 +56,7 @@ matrix& matrix::operator+=(const matrix& right) {
 	{
 		for (int j = 0; j < m; j++)
 		{
-			p[i][j] = right.p[i][j];
+			p[i][j] += right.p[i][j];
 		}
 	}
 }
@@ -68,4 +68,117 @@ matrix matrix::operator+(const matrix& right) {
 	matrix result(*this);
 	result += right;
 	return result;
+}
+
+matrix& matrix::operator-=(const matrix& right) {
+	if (m != right.m || n != right.n) {
+		throw Errors::Matrixs_size_unequal;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			p[i][j] -= right.p[i][j];
+		}
+	}
+}
+
+matrix matrix::operator-(const matrix& right) {
+	if (m != right.m || n != right.n) {
+		throw Errors::Matrixs_size_unequal;
+	}
+	matrix result(*this);
+	result -= right;
+	return result;
+}
+
+matrix matrix::operator*(const matrix& right) {
+	if (m != right.n) {
+		throw Errors::Matrixs_unmultiple;
+	}
+	matrix result(right.m, n);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			int sum = 0;
+			for (int w = 0; w < m; w++)
+			{
+				sum += p[i][w] * right.p[w][j];
+			}
+			result.p[i][j] = sum;
+		}
+	}
+	return result;
+}
+
+matrix& matrix::operator*=(const double& right) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			p[i][j] *= right;
+		}
+	}
+}
+
+matrix matrix::operator*(const double& right) {
+	matrix result(*this);
+	result *= right;
+	return result;
+}
+
+matrix operator*(const double& left, const matrix& right) {
+	matrix result(right);
+	result *= left;
+	return result;
+}
+
+matrix& matrix::operator/=(const double& right) {
+	*this *= (1 / right);
+	return *this;
+}
+
+matrix matrix::operator/(const double& right) {
+	matrix result(*this);
+	result /= right;
+	return result;
+}
+
+bool matrix::operator==(const matrix& right) {
+	if (m != right.m || n != right.n) {
+		return false;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (p[i][j] != right.p[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+std::istream& operator>>(std::istream& is, const matrix& right) {
+	for (int i = 0; i < right.n; i++)
+	{
+		for (int j = 0; j < right.m; j++)
+		{
+			is >> right.p[i][j];
+		}
+	}
+	return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const matrix& right) {
+	for (int i = 0; i < right.n; i++)
+	{
+		for (int j = 0; j < right.m; j++)
+		{
+			os << right.p[i][j] << ' ';
+		}
+		os << '\n';
+	}
+	return os;
 }
