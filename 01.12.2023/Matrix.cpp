@@ -16,7 +16,7 @@ void matrix::init_empty() {
 void matrix::add_elements(const matrix& m) {
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 0; j < this->m; j++)
 		{
 			p[i][j] = m.p[i][j];
 		}
@@ -46,6 +46,7 @@ matrix& matrix::operator=(const matrix& right) {
 		init_empty();
 		add_elements(right);
 	}
+        return *this;
 }
 
 matrix& matrix::operator+=(const matrix& right) {
@@ -59,9 +60,10 @@ matrix& matrix::operator+=(const matrix& right) {
 			p[i][j] += right.p[i][j];
 		}
 	}
+        return *this;
 }
 
-matrix matrix::operator+(const matrix& right) {
+matrix matrix::operator+(const matrix& right) const {
 	if (m != right.m || n != right.n) {
 		throw Errors::Matrixs_size_unequal;
 	}
@@ -81,9 +83,10 @@ matrix& matrix::operator-=(const matrix& right) {
 			p[i][j] -= right.p[i][j];
 		}
 	}
+        return *this;
 }
 
-matrix matrix::operator-(const matrix& right) {
+matrix matrix::operator-(const matrix& right) const {
 	if (m != right.m || n != right.n) {
 		throw Errors::Matrixs_size_unequal;
 	}
@@ -92,7 +95,7 @@ matrix matrix::operator-(const matrix& right) {
 	return result;
 }
 
-matrix matrix::operator*(const matrix& right) {
+matrix matrix::operator*(const matrix& right) const {
 	if (m != right.n) {
 		throw Errors::Matrixs_unmultiple;
 	}
@@ -119,9 +122,10 @@ matrix& matrix::operator*=(const double& right) {
 			p[i][j] *= right;
 		}
 	}
+        return *this;
 }
 
-matrix matrix::operator*(const double& right) {
+matrix matrix::operator*(const double& right) const {
 	matrix result(*this);
 	result *= right;
 	return result;
@@ -138,13 +142,13 @@ matrix& matrix::operator/=(const double& right) {
 	return *this;
 }
 
-matrix matrix::operator/(const double& right) {
+matrix matrix::operator/(const double& right) const {
 	matrix result(*this);
 	result /= right;
 	return result;
 }
 
-bool matrix::operator==(const matrix& right) {
+bool matrix::operator==(const matrix& right) const {
 	if (m != right.m || n != right.n) {
 		return false;
 	}
@@ -160,7 +164,7 @@ bool matrix::operator==(const matrix& right) {
 	return true;
 }
 
-std::istream& operator>>(std::istream& is, const matrix& right) {
+std::istream& operator>>(std::istream& is, matrix& right) {
 	for (int i = 0; i < right.n; i++)
 	{
 		for (int j = 0; j < right.m; j++)

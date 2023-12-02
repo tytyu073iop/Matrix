@@ -18,15 +18,15 @@ public:
 	matrix& operator+=(const matrix& right);
 	matrix& operator-=(const matrix& right);
 	matrix& operator*=(const double& right);
-	matrix operator+(const matrix& right);
-	matrix operator-(const matrix& right);
-	matrix operator*(const matrix& right);
-	matrix operator*(const double& right);
+	matrix operator+(const matrix& right) const;
+	matrix operator-(const matrix& right) const;
+	matrix operator*(const matrix& right) const;
+	matrix operator*(const double& right) const;
 	friend matrix operator*(const double& left, const matrix& right);
 	matrix& operator/=(const double& right);
-	matrix operator/(const double& right);
-	bool operator==(const matrix& right);
-	friend std::istream& operator>>(std::istream& is, const matrix& right);
+	matrix operator/(const double& right) const;
+	bool operator==(const matrix& right) const;
+	friend std::istream& operator>>(std::istream& is, matrix& right);
 	friend std::ostream& operator<<(std::ostream& os, const matrix& right);
 	//errors
 	enum class Errors

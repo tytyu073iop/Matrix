@@ -3,46 +3,73 @@
 
 int main() {
 	int m, n;
-	std::cout << "Ââåäèòå ğàçìåğ 1 ìàòğèöû\n";
+	std::cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ€Ğ°Ğ·Ğ¼ĞµÑ€ 1 Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñ‹\n";
 	std::cin >> m >> n;
-	std::cout << "Ââåäèòå ìàòğèöó 1\n";
+	std::cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ 1 Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñƒ\n";
 	matrix a(m, n);
 	std::cin >> a;
-	std::cout << "Ââåäèòå ğàçìåğ 2 ìàòğèöû\n";
+	std::cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ€Ğ°Ğ·Ğ¼ĞµÑ€ 2 Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñ‹\n";
 	std::cin >> m >> n;
-	std::cout << "Ââåäèòå 2 ìàòğèöó\n";
+	std::cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ 2 Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñƒ\n";
 	matrix b(m, n);
 	std::cin >> b;
 	//
-	std::cout << "Âûâîä 1 ìàòğèöû\n" << a;
-	std::cout << "Âûâîä 2 ìàòğèöû\n" << b;
+	std::cout << "Ğ’Ñ‹Ğ²Ğ¾Ğ´ 1 Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñ‹\n" << a;
+	std::cout << "Ğ’Ñ‹Ğ²Ğ¾Ğ´ 2 Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñ‹\n" << b;
 	//
-	std::cout << "Íåèçìåíÿşùåå îïåğàöèè\n";
-	std::cout << '\t' << "a + b" << (a + b) << '\n';
-	std::cout << '\t' << "a - b" << (a - b) << '\n';
-	std::cout << '\t' << "a * b";
+	std::cout << "ĞĞ¿ĞµÑ€Ğ°Ñ†Ğ¸Ğ¸ Ñ Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ğ°Ğ¼Ğ¸\n";
+	std::cout << '\t' << "a + b\n";
+        try {
+		std::cout << (a + b);
+	}
+	catch (matrix::Errors) {
+		std::cout << "ĞÑˆĞ¸Ğ±ĞºĞ°!";
+	} 
+        std::cout << '\n';
+	std::cout << '\t' << "a - b\n";
+        try {
+		std::cout << (a - b);
+	}
+	catch (matrix::Errors) {
+		std::cout << "ĞÑˆĞ¸Ğ±ĞºĞ°!";
+	}
+        std::cout << '\n';
+        std::cout << '\t' << "a * b\n";
 	try {
 		std::cout << (a * b);
 	}
-	catch (matrix::Errors::Matrixs_unmultiple) {
-		std::cout << "ÀØÈÏÊÀ!";
+	catch (matrix::Errors) {
+		std::cout << "ĞÑˆĞ¸Ğ±ĞºĞ°!";
 	}
-	
 	std::cout << '\n';
-	std::cout << "Ââåäèòå ÷èñëî ñ:";
+	std::cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾ c:";
 	double c;
 	std::cin >> c;
-	std::cout << '\t' << "c * b" << (c * b) << '\n';
-	std::cout << '\t' << "b * c" << (b * c) << '\n';
-	std::cout << '\t' << "a / c" << (a / c) << '\n';
+	std::cout << '\t' << "c * b\n" << (c * b) << '\n';
+	std::cout << '\t' << "b * c\n" << (b * c) << '\n';
+	std::cout << '\t' << "a / c\n" << (a / c) << '\n';
 	//
-	std::cout << "Ñğàâíåíèå\n";
-	std::cout << '\t' << "a == b" << (a == b) << '\n';
-	std::cout << '\t' << "a != b" << (a != b) << '\n';
+	std::cout << "Ğ¡Ñ€Ğ°Ğ²Ğ½ĞµĞ½Ğ¸Ğµ\n";
+	std::cout << '\t' << "a == b: " << (a == b) << '\n';
+	std::cout << '\t' << "a != b: " << (a != b) << '\n';
 	//
-	std::cout << "Èçìåíÿşùèå îïåğàöèè\n";
-	std::cout << '\t' << "a += b" << (a += b) << '\n';
-	std::cout << '\t' << "a -= b" << (a -= b) << '\n';
-	std::cout << '\t' << "a *= c" << (a *= c) << '\n';
-	std::cout << '\t' << "a /= c" << (a /= c) << '\n';
+	std::cout << "ĞĞ¿ĞµÑ€Ğ°Ñ†Ğ¸Ğ¸ Ğ¿Ñ€Ğ¸ÑĞ²Ğ°Ğ¸Ğ²Ğ°Ğ½Ğ¸Ñ\n";
+	std::cout << '\t' << "a += b\n";
+        try {
+		std::cout << (a += b);
+	}
+	catch (matrix::Errors) {
+		std::cout << "ĞÑˆĞ¸Ğ±ĞºĞ°!";
+	}
+        std::cout << '\n';
+	std::cout << '\t' << "a -= b\n";
+        try {
+		std::cout << (a -= b);
+	}
+	catch (matrix::Errors) {
+		std::cout << "ĞÑˆĞ¸Ğ±ĞºĞ°!";
+	}
+        std::cout << '\n';
+	std::cout << '\t' << "a *= c\n" << (a *= c) << '\n';
+	std::cout << '\t' << "a /= c\n" << (a /= c) << '\n';
 }
