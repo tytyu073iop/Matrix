@@ -32,6 +32,7 @@ void matrix::erase() {
 	{
 		delete[] p[i];
 	}
+        delete[] p;
 }
 
 matrix::~matrix() {
